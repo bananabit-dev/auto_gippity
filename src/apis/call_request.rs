@@ -75,10 +75,15 @@ mod tests {
         let messages = vec![message];
 
         let res = call_gpt(messages).await;
-        if let Ok(res_str) = res{
-            assert!(true)
-        }else {
-            assert!(false)
+        match res {
+            Ok(res_str) => {
+                dbg!(res_str);
+                assert!(true);
+            },
+            Err(e) => {
+                dbg!(e);
+                assert!(false);
+            }
         }
     }
 }
