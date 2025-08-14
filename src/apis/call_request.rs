@@ -35,7 +35,7 @@ pub async fn call_gpt(messages: Vec<Message>) -> Result<String, Box<dyn std::err
     // Create chat completion
 
     let chat_completion: ChatCompletion = ChatCompletion {
-        model: "z-ai/glm-4-32b".to_string(),
+        model: "z-ai/glm-4.5".to_string(),
         messages,
         temperature: 0.1,
     };

@@ -63,20 +63,21 @@ mod tests{
     }
 }
 
-pub async fn ai_task_request(message_context: String, agent_position: &str, agent_operation: &str, function_pass: for<'a> fn(&str) -> &'static str) -> String{
+pub async fn ai_task_request(message_context: String, agent_position: &str, agent_operation: &str, function_pass: for<'a> fn(&str) -> &'static str)-> String{
     let func_msg: Message = extend_ai_function(function_pass, &message_context);
 
     PrintCommand::AICall.print_agent_message(agent_position, agent_operation);
     let fmsg = func_msg.clone();
 
-    let llm_response_text = call_gpt(vec!(func_msg));
+    let llm_response_text = call_gpt(vec!(func_msg)).await;
 
 
     // Handle success
-    let llm_response: String = match llm_response_text.await {
+    let llm_response: String = match llm_response_text {
         Ok(llm_res) => llm_res,
         Err(_) => call_gpt(vec!(fmsg)).await.expect("Failed to call OpenAI")
     };
-    String::from("some string")
-
+    let mesg = llm_response.clone();
+    let msg = mesg;
+    msg
 }
