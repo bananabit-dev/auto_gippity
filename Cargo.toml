@@ -8,10 +8,10 @@ ai_functions = "0.1.1"
 async-trait = "0.1.88"
 crossterm = "0.29.0"
 dotenv = "0.15.0"
-reqwest = "0.12.23"
-serde = "1.0.219"
+reqwest = {version = "0.12.23", features= ["json"]}
+serde = {version = "1.0.219", features = ["derive"]}
 serde_json = "1.0.142"
 strum = "0.27.2"
 strum_macros = "0.27.2"
-tokio = "1.47.1"
+tokio = {version = "1.47.1", features = ["full"]}
 webbrowser = "1.0.5"
