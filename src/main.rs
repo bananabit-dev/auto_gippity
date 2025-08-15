@@ -11,11 +11,17 @@ mod ai_functions;
 mod apis;
 mod helpers;
 mod models;
+use crate::models::agent_manager::managing_agent::ManagingAgent;
 
 use helpers::command_line::get_user_response;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let usr_req: String = get_user_response("What webserver are we building today?");
 
-    dbg!(usr_req);
+    let mut manage_agent: ManagingAgent = ManagingAgent::new(usr_req).await.expect("Error creating agent!");
+
+    manage_agent.execute_project().await;
+
+    dbg!(manage_agent);
 }

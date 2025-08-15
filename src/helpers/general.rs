@@ -8,9 +8,15 @@ const CODE_TEMPLATE_PATH: &str =
     "C:\\Users\\marvi\\workspace\\rust-web-server-template\\src\\code_template.rs";
 const EXEC_MAIN_PATH: &str = "C:\\Users\\marvi\\workspace\\rust-web-server-template\\src\\main.rs";
 const API_SCHEMA_PATH: &str = "C:\\Users\\marvi\\workspace\\auto_gippity\\schema\\";
+pub const WEB_SERVER_PROJECT_PATH: &str = "C:\\Users\\marvi\\workspace\\rust-web-server-template\\";
 
 pub async fn read_code_template_contents() -> String {
     let path: String = String::from(CODE_TEMPLATE_PATH);
+    fs::read_to_string(path).await.expect("msg")
+}
+
+pub async fn read_exec_main_contents() -> String {
+    let path: String = String::from(EXEC_MAIN_PATH);
     fs::read_to_string(path).await.expect("msg")
 }
 
